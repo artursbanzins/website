@@ -18,7 +18,7 @@ def sakums():
 @app.route("/sludinajumi")
 def sludinajumi():
     conn = get_db_connection()
-    sludinajumi = conn.execute("SELECT * FROM sludinajumi").fetchall()
+    sludinajumi = conn.execute("SELECT * FROM sludinajumi WHERE quality = 2").fetchall()
     conn.close()
     return render_template("sludinajumi.html", sludinajumi=sludinajumi)
 

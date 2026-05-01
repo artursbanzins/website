@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}Sākums{% endblock %}
+{% block title %}Sludinājumi{% endblock %}
 {% block content %}
 
 <div class="sludinajumi">
@@ -8,7 +8,7 @@
             <div class="sludinajums">
                 
                 <div class="image-container">
-                    <img class="bilde" src="{{ url_for('static', filename='images/' ~ sludinajums['image']) }}">
+                    <img class="bilde" src="{{ url_for('static', filename='images/' ~ sludinajums['image']) }}.jpg">
                     <div class="year">{{ sludinajums["year"] }}</div>
                 </div>
 
