@@ -1,0 +1,44 @@
+body {
+    background-color: #f3f3f3;
+    margin: 0;
+    font-family: "Google Sans", sans-serif;
+}
+header {
+    background-color: #1E3A5F;
+}
+.header {
+    justify-content: center;
+    display: flex;
+}
+.button {
+    width: 200px;
+    height: 80px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #FFFFFF;
+}
+.button:hover {
+    background-color: #0E2A4F;
+    color: #E63946;
+}
+a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+.sludinajumi {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+.sludinajums {
+    background-color: #FFFFFF;
+    width: 500px;
+    height: 600px;
+}
+.bilde {
+    width: 500px;
+}
+h2 {
+    color: #1E3A5F;
+}
