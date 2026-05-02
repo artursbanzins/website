@@ -18,6 +18,18 @@ def sakums():
 @app.route("/sludinajumi")
 def sludinajumi():
     conn = get_db_connection()
+    sludinajumi = conn.execute("""
+        SELECT sludinajumi.*, manufacturers.name AS manufacturer_name FROM sludinajumi
+        JOIN manufacturers
+        ON sludinajumi.manufacturer_id = manufacturers.id
+        WHERE sludinajumi.quality = 2
+        """).fetchall()
+    conn.close()
+    return render_template("sludinajumi.html", sludinajumi=sludinajumi)
+
+@app.route("/luxus-auto")
+def luxus_auto():
+    conn = get_db_connection()
     sludinajumi = conn.execute("SELECT * FROM sludinajumi WHERE quality = 2").fetchall()
     conn.close()
     return render_template("sludinajumi.html", sludinajumi=sludinajumi)
