@@ -144,3 +144,150 @@ main {
     height: 300px; /* bigger image */
     object-fit: cover;
 }
+
+
+
+/* HERO */
+.hero {
+    height: 60vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+                url("/static/images/hero.jpg");
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding: 50px;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 3rem;
+}
+
+.search-bar {
+    margin-top: 20px;
+    display: flex;
+}
+
+.search-bar input {
+    padding: 10px;
+    width: 300px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+}
+
+.search-bar button {
+    background: #E63946;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 0 5px 5px 0;
+}
+
+/* CATEGORIES */
+.categories {
+    display: flex;
+    gap: 20px;
+    padding: 40px;
+}
+
+.cat-card {
+    flex: 1;
+    padding: 30px;
+    background: #1E3A5F;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.cat-card:hover {
+    transform: translateY(-5px);
+}
+
+.premium {
+    background: #111;
+}
+
+.cheap {
+    background: #6c757d;
+}
+
+/* FEATURED */
+.featured {
+    padding: 40px;
+}
+
+.homesludinajumi {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.homesludinajums {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.homesludinajums:hover {
+    transform: scale(1.03);
+}
+
+.homesludinajums img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    background: #eee;
+}
+
+.homeinfo-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    padding-top: 8px;
+    padding-bottom: 5px;
+    align-items: center;
+}
+
+.homeprice {
+    color: #E63946;
+    font-weight: bold;
+    font-size: 19px;
+    padding-left: 10px;
+}
+
+/* CTA */
+.cta {
+    text-align: center;
+    padding: 50px;
+    background: #1E3A5F;
+    color: white;
+}
+
+.cta-btn {
+    display: inline-block;
+    margin-top: 15px;
+    background: #E63946;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+h3 {
+    font-size: 19px;
+    color: #1E3A5F;
+}
+
+a {
+    text-decoration: none;
+}
+
+.homeyear {
+    position: relative;
+    background-color: #1e3a5f;
+    color: white;
+    padding: 5px 10px;
+    max-height: min-content;
+    border-radius: 6px;
+    font-size: 14px;
+}

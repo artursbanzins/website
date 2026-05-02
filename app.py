@@ -13,26 +13,32 @@ def get_db_connection():
 
 @app.route("/")
 def sakums():
-    return render_template("home.html")
-
-@app.route("/sludinajumi")
-def sludinajumi():
     conn = get_db_connection()
     sludinajumi = conn.execute("""
         SELECT sludinajumi.*, manufacturers.name AS manufacturer_name FROM sludinajumi
         JOIN manufacturers
         ON sludinajumi.manufacturer_id = manufacturers.id
-        WHERE sludinajumi.quality = 2
-        """).fetchall()
+        WHERE quality = 2 OR quality = 3
+        """
+        ).fetchall()
     conn.close()
-    return render_template("sludinajumi.html", sludinajumi=sludinajumi)
+    return render_template("home.html", sludinajumi=sludinajumi)
 
-@app.route("/luxus-auto")
-def luxus_auto():
+@app.route("/<quality_name>")
+def sludinajumi(quality_name):
     conn = get_db_connection()
-    sludinajumi = conn.execute("SELECT * FROM sludinajumi WHERE quality = 2").fetchall()
+    sludinajumi = conn.execute("""
+        SELECT sludinajumi.*, qualities.quality_name, manufacturers.name AS manufacturer_name FROM sludinajumi
+        JOIN manufacturers
+        ON sludinajumi.manufacturer_id = manufacturers.id
+        JOIN qualities
+        ON sludinajumi.quality = qualities.id
+        WHERE qualities.quality_name = ?
+        """,
+        (quality_name,),
+        ).fetchall()
     conn.close()
-    return render_template("sludinajumi.html", sludinajumi=sludinajumi)
+    return render_template("category.html", sludinajumi=sludinajumi)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)

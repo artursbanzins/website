@@ -2,6 +2,60 @@
 {% block title %}Sākums{% endblock %}
 {% block content %}
 
-saturs
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>Atrodi savu ideālo auto</h1>
+        <p>Ātri, vienkārši un droši</p>
+
+        <form class="search-bar">
+            <input type="text" placeholder="Meklēt pēc markas vai modeļa...">
+            <button type="submit">Meklēt</button>
+        </form>
+    </div>
+</section>
+
+<!-- CATEGORIES -->
+<section class="categories">
+    <a href="/sludinajumi" class="cat-card">
+        <h2>Visi auto</h2>
+    </a>
+    <a href="/luxus-auto" class="cat-card premium">
+        <h2>Premium</h2>
+    </a>
+    <a href="/srots" class="cat-card cheap">
+        <h2>Budžeta</h2>
+    </a>
+</section>
+
+<!-- FEATURED -->
+<section class="featured">
+    <h2>Jaunākie sludinājumi</h2>
+
+    <div class="homesludinajumi">
+        {% for sludinajums in sludinajumi %}
+        <a href="#">
+            <div class="homesludinajums">
+                <img src="{{ url_for('static', filename='images/' ~ sludinajums['image']) }}.jpg">
+
+                <div class="homeinfo-row">
+                    <h3>
+                        {{ sludinajums["manufacturer_name"] }} 
+                        {{ sludinajums["model"] }}
+                    </h3>
+                    <span class="homeyear">{{ sludinajums["year"] }}</span>
+                </div>
+                <span class="homeprice">{{ sludinajums["price"] }} €</span>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+    <h2>Vēlies pārdot savu auto?</h2>
+    <a href="#" class="cta-btn">Ievietot sludinājumu</a>
+</section>
 
 {% endblock %}
