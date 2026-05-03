@@ -4,7 +4,7 @@
 
 <div class="sludinajumi">
     {% for sludinajums in sludinajumi %}
-        <a href="">
+        <a href="{{ url_for('sludinajums', quality_name=sludinajums['quality_name'], sludinajums_id=sludinajums['id']) }}">
             <div class="sludinajums">
                 
                 <div class="image-container">
