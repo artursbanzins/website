@@ -183,6 +183,11 @@ main {
     border-radius: 0 5px 5px 0;
 }
 
+.search-bar button:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 /* CATEGORIES */
 .categories {
     display: flex;
@@ -265,12 +270,18 @@ main {
     color: white;
 }
 
-.cta-btn {
+.cta-button {
     display: inline-block;
     margin-top: 15px;
     background: #E63946;
     padding: 10px 20px;
     border-radius: 5px;
+    color: #FFFFFF;
+}
+
+.cta-button:hover {
+    transform: scale(1.02);
+    transition-duration: 0.2s;
 }
 
 h3 {

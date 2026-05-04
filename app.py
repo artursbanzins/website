@@ -45,12 +45,11 @@ def sludinajums(quality_name, sludinajums_id):  # add sludinajums_id parameter
     conn = get_db_connection()
     sludinajums = conn.execute("""
         SELECT sludinajumi.*, qualities.quality_name, manufacturers.name AS manufacturer_name,
-        
+            engine.type AS engine_type, engine.fuel, engine.size, engine.power, engine.extra_info
         FROM sludinajumi
-        JOIN manufacturers
-        ON sludinajumi.manufacturer_id = manufacturers.id
-        JOIN qualities
-        ON sludinajumi.quality = qualities.id
+        JOIN manufacturers ON sludinajumi.manufacturer_id = manufacturers.id
+        JOIN qualities ON sludinajumi.quality = qualities.id
+        LEFT JOIN engine ON sludinajumi.engine_id = engine.id
         WHERE qualities.quality_name = ?
         AND sludinajumi.id = ?
         """,

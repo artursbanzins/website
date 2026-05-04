@@ -1,14 +1,14 @@
 {
 	"folders": {},
 	"connections": {
-		"sqlite_jdbc-19de4384ace-547b88e64793be6c": {
+		"sqlite_jdbc-19df2f00dd5-81bcc770fd86c3e": {
 			"provider": "sqlite",
 			"driver": "sqlite_jdbc",
 			"name": "database.db",
 			"save-password": true,
 			"configuration": {
-				"database": "D:\\website\\database.db",
-				"url": "jdbc:sqlite:D:\\website\\database.db",
+				"database": "C:\\Users\\bartu\\Documents\\GitHub\\website\\database.db",
+				"url": "jdbc:sqlite:C:\\Users\\bartu\\Documents\\GitHub\\website\\database.db",
 				"configurationType": "MANUAL",
 				"type": "dev",
 				"closeIdleConnection": true

@@ -8,7 +8,13 @@
              alt="{{ sludinajums['manufacturer_name'] }} {{ sludinajums['model'] }}"
              class="listing-hero-img">
         <div class="listing-hero-overlay">
-            <div class="listing-badge">{{ sludinajums['quality_name'] }}</div>
+            {% if sludinajums['engine_type'] %}
+                <div class="listing-badge">
+                    {{ sludinajums['size'] }} 
+                    {{ sludinajums['engine_type'] }} 
+                    {{ sludinajums['fuel'] }}
+                </div>
+            {% endif %}
             <h1 class="listing-title">{{ sludinajums['manufacturer_name'] }} {{ sludinajums['model'] }}</h1>
             <p class="listing-year-hero">{{ sludinajums['year'] }}</p>
         </div>
@@ -18,27 +24,44 @@
     <div class="listing-layout">
 
         <!-- LEFT: DETAILS -->
-        <div class="listing-details">
-            <div class="detail-card">
-                <h2 class="section-title">Informācija</h2>
-                <div class="detail-grid">
-                    <div class="detail-item">
-                        <span class="detail-label">Ražotājs</span>
-                        <span class="detail-value">{{ sludinajums['manufacturer_name'] }}</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Modelis</span>
-                        <span class="detail-value">{{ sludinajums['model'] }}</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Gads</span>
-                        <span class="detail-value">{{ sludinajums['year'] }}</span>
-                    </div>
-                    <div class="detail-item">
-                        <span class="detail-label">Kategorija</span>
-                        <span class="detail-value">{{ sludinajums['quality_name'] }}</span>
-                    </div>
+        <div class="detail-card">
+            <h2 class="section-title">Informācija</h2>
+            <div class="detail-grid">
+                <div class="detail-item">
+                    <span class="detail-label">Ražotājs</span>
+                    <span class="detail-value">{{ sludinajums['manufacturer_name'] }}</span>
                 </div>
+                <div class="detail-item">
+                    <span class="detail-label">Modelis</span>
+                    <span class="detail-value">{{ sludinajums['model'] }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Gads</span>
+                    <span class="detail-value">{{ sludinajums['year'] }}</span>
+                </div>
+
+                {% if sludinajums['engine_type'] %}
+                <div class="detail-item">
+                    <span class="detail-label">Motora tips</span>
+                    <span class="detail-value">
+                        {{ sludinajums['extra_info'] }} 
+                        {{ sludinajums['engine_type'] }}
+                    </span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Degviela</span>
+                    <span class="detail-value">{{ sludinajums['fuel'] }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Tilpums</span>
+                    <span class="detail-value">{{ sludinajums['size'] }}L</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Jauda</span>
+                    <span class="detail-value">{{ sludinajums['power'] }} HP</span>
+                </div>
+                {% endif %}
+
             </div>
         </div>
 
