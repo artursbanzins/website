@@ -34,7 +34,7 @@
 
     <div class="homesludinajumi">
         {% for sludinajums in sludinajumi %}
-        <a href="#">
+        <a href="{{ url_for('sludinajums', quality_name=sludinajums['quality_name'], sludinajums_id=sludinajums['id']) }}">
             <div class="homesludinajums">
                 <img src="{{ url_for('static', filename='images/' ~ sludinajums['image']) }}.jpg">
 
@@ -55,7 +55,7 @@
 <!-- CTA -->
 <section class="cta">
     <h2>Vēlies pārdot savu auto?</h2>
-    <a href="#" class="cta-button">Ievietot sludinājumu</a>
+    <a href="/ievietot" class="cta-button">Ievietot sludinājumu</a>
 </section>
 
 {% endblock %}

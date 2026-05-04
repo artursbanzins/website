@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Labot sludinājumu{% endblock %}
+{% block content %}
+
+<div class="form-page">
+    <div class="form-card">
+        <h1 class="form-title">Labot sludinājumu</h1>
+        <p class="form-subtitle">Atjaunini informāciju par savu automašīnu</p>
+
+        <form method="POST" enctype="multipart/form-data" class="listing-form">
+
+            <!-- MANUFACTURER -->
+            <div class="form-group">
+                <label class="form-label">Ražotājs</label>
+                <select name="manufacturer_id" class="form-input" id="manufacturer-select" onchange="toggleOther(this)">
+                    {% for m in manufacturers %}
+                        <option value="{{ m['id'] }}" {% if m['id'] == sludinajums['manufacturer_id'] %}selected{% endif %}>
+                            {{ m['name'] }}
+                        </option>
+                    {% endfor %}
+                    <option value="other">Cits...</option>
+                </select>
+            </div>
+
+            <!-- OTHER MANUFACTURER -->
+            <div class="form-group" id="other-manufacturer-group" style="display:none;">
+                <label class="form-label">Norādīt ražotāju</label>
+                <input type="text" name="manufacturer_other" class="form-input" placeholder="piem. Honda">
+            </div>
+
+            <!-- MODEL -->
+            <div class="form-group">
+                <label class="form-label">Modelis</label>
+                <input type="text" name="model" class="form-input" value="{{ sludinajums['model'] }}" required>
+            </div>
+
+            <!-- YEAR + PRICE -->
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">Gads</label>
+                    <input type="number" name="year" class="form-input" value="{{ sludinajums['year'] }}" min="1950" max="2025" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Cena (€)</label>
+                    <input type="text" name="price" class="form-input" value="{{ sludinajums['price'] }}" required>
+                </div>
+            </div>
+
+            <!-- CATEGORY -->
+            <div class="form-group">
+                <label class="form-label">Kategorija</label>
+                <select name="quality" class="form-input">
+                    {% for q in qualities %}
+                        <option value="{{ q['id'] }}" {% if q['id'] == sludinajums['quality'] %}selected{% endif %}>
+                            {{ q['quality_name'] }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- IMAGE -->
+            <div class="form-group">
+                <label class="form-label">Jauna bilde (neobligāti)</label>
+                <div class="file-upload-area" id="file-upload-area">
+                    <input type="file" name="image" id="image-input" accept=".jpg,.jpeg,.png,.webp" onchange="previewImage(this)">
+                    <div class="file-upload-placeholder" id="upload-placeholder">
+                        <span class="upload-icon">📷</span>
+                        <span>Spied vai velc bildi šeit</span>
+                        <span class="upload-hint">Atstāj tukšu, lai saglabātu esošo bildi</span>
+                    </div>
+                    <img id="image-preview" class="image-preview" style="display:none;">
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Saglabāt izmaiņas</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function toggleOther(select) {
+    const group = document.getElementById('other-manufacturer-group');
+    group.style.display = select.value === 'other' ? 'block' : 'none';
+}
+
+function previewImage(input) {
+    const preview = document.getElementById('image-preview');
+    const placeholder = document.getElementById('upload-placeholder');
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = e => {
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+            placeholder.style.display = 'none';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+
+{% endblock %}

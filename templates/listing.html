@@ -10,8 +10,8 @@
         <div class="listing-hero-overlay">
             {% if sludinajums['engine_type'] %}
                 <div class="listing-badge">
-                    {{ sludinajums['size'] }} 
-                    {{ sludinajums['engine_type'] }} 
+                    {{ sludinajums['size'] }}
+                    {{ sludinajums['engine_type'] }}
                     {{ sludinajums['fuel'] }}
                 </div>
             {% endif %}
@@ -43,10 +43,7 @@
                 {% if sludinajums['engine_type'] %}
                 <div class="detail-item">
                     <span class="detail-label">Motora tips</span>
-                    <span class="detail-value">
-                        {{ sludinajums['extra_info'] }} 
-                        {{ sludinajums['engine_type'] }}
-                    </span>
+                    <span class="detail-value">{{ sludinajums['extra_info'] or '' }} {{ sludinajums['engine_type'] }}</span>
                 </div>
                 <div class="detail-item">
                     <span class="detail-label">Degviela</span>
@@ -61,7 +58,6 @@
                     <span class="detail-value">{{ sludinajums['power'] }} HP</span>
                 </div>
                 {% endif %}
-
             </div>
         </div>
 
@@ -71,7 +67,18 @@
                 <p class="price-label">Cena</p>
                 <p class="price-big">€{{ sludinajums['price'] }}</p>
                 <a href="#" class="contact-btn">Sazināties</a>
-                <a href="/{{ sludinajums['quality_name'] }}" class="back-link">← Atpakaļ uz {{ sludinajums['quality_name'] }}</a>
+                <a href="/{{ sludinajums['quality_name'] }}" class="back-link">← Atpakaļ</a>
+
+                <hr class="card-divider">
+
+                <a href="{{ url_for('labot', quality_name=sludinajums['quality_name'], sludinajums_id=sludinajums['id']) }}"
+                   class="edit-btn">✏️ Labot sludinājumu</a>
+
+                <form method="POST"
+                      action="{{ url_for('dzest', quality_name=sludinajums['quality_name'], sludinajums_id=sludinajums['id']) }}"
+                      onsubmit="return confirm('Vai tiešām dzēst šo sludinājumu?')">
+                    <button type="submit" class="delete-btn">🗑️ Dzēst sludinājumu</button>
+                </form>
             </div>
         </div>
 
