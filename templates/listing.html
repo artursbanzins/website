@@ -66,7 +66,30 @@
             <div class="price-card">
                 <p class="price-label">Cena</p>
                 <p class="price-big">€{{ sludinajums['price'] }}</p>
-                <a href="#" class="contact-btn">Sazināties</a>
+                <button class="contact-btn" onclick="document.getElementById('contact-modal').style.display='flex'">
+                    Sazināties
+                </button>
+
+                <!-- MODAL -->
+                <div id="contact-modal" style="display:none;" class="modal-overlay" onclick="if(event.target===this)this.style.display='none'">
+                    <div class="modal-card">
+                        <h2>Sazinies ar pārdevēju</h2>
+                        <p class="modal-subtitle">{{ sludinajums['year'] }} {{ sludinajums['manufacturer_name'] }} {{ sludinajums['model'] }}</p>
+                        <div class="modal-info-row">
+                            <span class="modal-label">📞 Tālrunis</span>
+                            <span class="modal-value">+371 24 843 442</span>
+                        </div>
+                        <div class="modal-info-row">
+                            <span class="modal-label">📧 E-pasts</span>
+                            <span class="modal-value">info@bossmotors.lv</span>
+                        </div>
+                        <div class="modal-info-row">
+                            <span class="modal-label">🕐 Darba laiks</span>
+                            <span class="modal-value">P-Pk 15:59-16:00</span>
+                        </div>
+                        <button class="modal-close" onclick="document.getElementById('contact-modal').style.display='none'">Aizvērt</button>
+                    </div>
+                </div>
                 <a href="/{{ sludinajums['quality_name'] }}" class="back-link">← Atpakaļ</a>
 
                 <hr class="card-divider">

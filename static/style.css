@@ -62,13 +62,6 @@ main {
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* IMAGE */
-.bilde {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-}
-
 /* TEXT */
 .sludinajums h2 {
     padding: 15px;
@@ -80,19 +73,6 @@ main {
 .sludinajumi a {
     text-decoration: none;
     color: inherit;
-}
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-    .sludinajumi {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .sludinajumi {
-        grid-template-columns: 1fr;
-    }
 }
 
 .info-row {
@@ -224,9 +204,7 @@ main {
 .homeinfo-row {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    padding-top: 8px;
-    padding-bottom: 5px;
+    padding: 8px 10px 5px;
     align-items: center;
 }
 
@@ -284,7 +262,6 @@ h2 {
 
 /* ===========================
    LISTING DETAIL PAGE
-   Add these to your style.css
    =========================== */
 
 /* HERO IMAGE */
@@ -457,24 +434,8 @@ h2 {
     color: #1E3A5F;
 }
 
-/* RESPONSIVE */
-@media (max-width: 800px) {
-    .listing-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .listing-title {
-        font-size: 2rem;
-    }
-
-    .price-card {
-        position: static;
-    }
-}
-
 /* ===========================
    FORM PAGES (ievietot, labot)
-   Add these to your style.css
    =========================== */
  
 .form-page {
@@ -659,4 +620,308 @@ h2 {
 .delete-btn:hover {
     background-color: #E63946;
     color: white;
+}
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-card {
+    background: white;
+    border-radius: 16px;
+    padding: 36px;
+    width: 90%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.modal-card h2 {
+    color: #1E3A5F;
+    margin-bottom: 0;
+}
+
+.modal-subtitle {
+    color: #9aa5b4;
+    font-size: 14px;
+    margin-top: -8px;
+}
+
+.modal-info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #f0f2f5;
+}
+
+.modal-label {
+    font-size: 13px;
+    color: #9aa5b4;
+    font-weight: 600;
+}
+
+.modal-value {
+    font-size: 15px;
+    color: #1E3A5F;
+    font-weight: 500;
+}
+
+.modal-close {
+    background: #1E3A5F;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: "Google Sans", sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 4px;
+}
+
+.modal-close:hover {
+    background-color: #E63946;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .sludinajumi {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .sludinajumi {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+    .listing-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .listing-title {
+        font-size: 2rem;
+    }
+
+    .price-card {
+        position: static;
+    }
+}
+
+/* ── TABLET (max 900px) ─────────────────────────────────────── */
+@media (max-width: 900px) {
+ 
+    /* Header */
+    .header {
+        padding: 12px 20px;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+ 
+    .button {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+ 
+    /* Main padding */
+    main {
+        padding: 20px;
+    }
+ 
+    /* Category grid */
+    .sludinajumi {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+ 
+    /* Home featured grid */
+    .homesludinajumi {
+        grid-template-columns: repeat(2, 1fr);
+    }
+ 
+    /* Categories section */
+    .categories {
+        padding: 20px;
+        gap: 12px;
+    }
+ 
+    .cat-card {
+        padding: 20px;
+    }
+ 
+    /* Featured section */
+    .featured {
+        padding: 20px;
+    }
+ 
+    /* Listing detail layout */
+    .listing-layout {
+        grid-template-columns: 1fr;
+        margin: 24px auto;
+    }
+ 
+    .price-card {
+        position: static;
+    }
+ 
+    .listing-title {
+        font-size: 2rem;
+    }
+ 
+    .listing-hero-overlay {
+        padding: 24px 28px;
+    }
+ 
+    /* Forms */
+    .form-card {
+        padding: 28px;
+    }
+ 
+    .form-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+ 
+/* ── MOBILE (max 600px) ─────────────────────────────────────── */
+@media (max-width: 600px) {
+ 
+    /* Header — scrollable row */
+    .header {
+        padding: 10px 14px;
+        gap: 0;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+ 
+    .button {
+        padding: 7px 10px;
+        font-size: 13px;
+        white-space: nowrap;
+    }
+ 
+    /* Main padding */
+    main {
+        padding: 14px;
+    }
+ 
+    /* Hero */
+    .hero {
+        height: 160px;
+        padding: 24px;
+    }
+ 
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+ 
+    /* Categories — stack vertically */
+    .categories {
+        flex-direction: column;
+        padding: 14px;
+        gap: 10px;
+    }
+ 
+    /* Category grid — single column */
+    .sludinajumi {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+ 
+    /* Home featured — single column */
+    .homesludinajumi {
+        grid-template-columns: 1fr;
+    }
+ 
+    /* Featured section */
+    .featured {
+        padding: 14px;
+    }
+ 
+    .featured h2 {
+        font-size: 1.2rem;
+    }
+ 
+    /* CTA */
+    .cta {
+        padding: 32px 20px;
+    }
+ 
+    /* Listing hero */
+    .listing-hero {
+        height: 40vh;
+    }
+ 
+    .listing-hero-overlay {
+        padding: 16px 18px;
+    }
+ 
+    .listing-title {
+        font-size: 1.5rem;
+    }
+ 
+    .listing-year-hero {
+        font-size: 0.95rem;
+    }
+ 
+    /* Detail grid — single column on mobile */
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+ 
+    /* Remove "last 2 no border" rule and just remove last 1 */
+    .detail-item:nth-last-child(-n+2) {
+        border-bottom: 1px solid #f0f2f5;
+    }
+ 
+    .detail-item:last-child {
+        border-bottom: none;
+    }
+ 
+    .detail-card {
+        padding: 20px;
+    }
+ 
+    .price-card {
+        padding: 20px;
+    }
+ 
+    .price-big {
+        font-size: 2rem;
+    }
+ 
+    /* Forms */
+    .form-page {
+        margin: 24px auto;
+    }
+ 
+    .form-card {
+        padding: 20px;
+    }
+ 
+    .form-title {
+        font-size: 1.4rem;
+    }
+ 
+    /* Year + Price side by side — stack on very small screens */
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+ 
+    /* Modal */
+    .modal-card {
+        padding: 24px;
+        margin: 16px;
+    }
 }
