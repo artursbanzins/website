@@ -36,13 +36,14 @@ def sakums():
 def kategorijas(quality_name):
     conn = get_db_connection()
     sludinajumi = conn.execute("""
-        SELECT sludinajumi.*, qualities.quality_name, manufacturers.name AS manufacturer_name FROM sludinajumi
+        SELECT sludinajumi.*, qualities.*, manufacturers.name AS manufacturer_name FROM sludinajumi
         JOIN manufacturers ON sludinajumi.manufacturer_id = manufacturers.id
         JOIN qualities ON sludinajumi.quality = qualities.id
         WHERE qualities.quality_name = ?
         """, (quality_name,)).fetchall()
+    quality = conn.execute("SELECT * FROM qualities WHERE quality_name = ?", (quality_name,)).fetchone()
     conn.close()
-    return render_template("category.html", sludinajumi=sludinajumi)
+    return render_template("category.html", sludinajumi=sludinajumi, quality=quality)
 
 @app.route("/<quality_name>/<int:sludinajums_id>")
 def sludinajums(quality_name, sludinajums_id):
@@ -101,7 +102,7 @@ def ievietot():
 
         # Redirect to the correct category page
         quality_name = dict(next(q for q in qualities if str(q['id']) == str(quality_id)))['quality_name']
-        return redirect(url_for('sludinajumi', quality_name=quality_name))
+        return redirect(url_for('kategorijas', quality_name=quality_name))
 
     conn.close()
     return render_template("addlisting.html", manufacturers=manufacturers, qualities=qualities)
@@ -161,7 +162,7 @@ def dzest(quality_name, sludinajums_id):
     conn.execute("DELETE FROM sludinajumi WHERE id = ?", (sludinajums_id,))
     conn.commit()
     conn.close()
-    return redirect(url_for('sludinajumi', quality_name=quality_name))
+    return redirect(url_for('kategorijas', quality_name=quality_name))
 
 if __name__ == "__main__":
     app.run(debug=True, port=5001)
