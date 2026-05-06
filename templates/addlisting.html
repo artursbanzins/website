@@ -9,7 +9,6 @@
 
         <form method="POST" enctype="multipart/form-data" class="listing-form">
 
-            <!-- MANUFACTURER -->
             <div class="form-group">
                 <label class="form-label">Ražotājs</label>
                 <select name="manufacturer_id" class="form-input" id="manufacturer-select" onchange="toggleOther(this)">
@@ -20,19 +19,16 @@
                 </select>
             </div>
 
-            <!-- OTHER MANUFACTURER (hidden by default) -->
             <div class="form-group" id="other-manufacturer-group" style="display:none;">
                 <label class="form-label">Norādīt ražotāju</label>
                 <input type="text" name="manufacturer_other" class="form-input" placeholder="piem. Honda">
             </div>
 
-            <!-- MODEL -->
             <div class="form-group">
                 <label class="form-label">Modelis</label>
                 <input type="text" name="model" class="form-input" placeholder="piem. Civic" required>
             </div>
 
-            <!-- YEAR + PRICE (side by side) -->
             <div class="form-row">
                 <div class="form-group">
                     <label class="form-label">Gads</label>
@@ -44,7 +40,6 @@
                 </div>
             </div>
 
-            <!-- CATEGORY -->
             <div class="form-group">
                 <label class="form-label">Kategorija</label>
                 <select name="quality" class="form-input">
@@ -54,7 +49,6 @@
                 </select>
             </div>
 
-            <!-- IMAGE -->
             <div class="form-group">
                 <label class="form-label">Bilde</label>
                 <div class="file-upload-area" id="file-upload-area">

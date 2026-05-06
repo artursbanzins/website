@@ -61,7 +61,6 @@ def sludinajums(quality_name, sludinajums_id):
     conn.close()
     return render_template("listing.html", sludinajums=sludinajums)
 
-# ── CREATE ─────────────────────────────────────────────────────────────────────
 @app.route("/ievietot", methods=["GET", "POST"])
 def ievietot():
     conn = get_db_connection()
@@ -74,7 +73,6 @@ def ievietot():
         year        = request.form["year"]
         quality_id  = request.form["quality"]
 
-        # Manufacturer — existing or new "other"
         manufacturer_id = request.form.get("manufacturer_id")
         other_name      = request.form.get("manufacturer_other", "").strip()
 
@@ -82,16 +80,15 @@ def ievietot():
             cur = conn.execute("INSERT INTO manufacturers (name) VALUES (?)", (other_name,))
             manufacturer_id = cur.lastrowid
         
-        # Image upload
         image_name = "placeholder"
         file = request.files.get("image")
         if file and allowed_file(file.filename):
             ext = file.filename.rsplit('.', 1)[1].lower()
-            # Use manufacturer + model as filename, sanitized
+
             raw_name = f"{other_name or dict(next(m for m in manufacturers if str(m['id']) == str(manufacturer_id)))['name']}_{model}".replace(" ", "_")
             image_name = secure_filename(raw_name)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], f"{image_name}.{ext}"))
-            image_name = f"{image_name}"  # stored without extension to match existing convention
+            image_name = f"{image_name}"
 
         conn.execute("""
             INSERT INTO sludinajumi (model, price, image, year, quality, manufacturer_id)
@@ -100,14 +97,12 @@ def ievietot():
         conn.commit()
         conn.close()
 
-        # Redirect to the correct category page
         quality_name = dict(next(q for q in qualities if str(q['id']) == str(quality_id)))['quality_name']
         return redirect(url_for('kategorijas', quality_name=quality_name))
 
     conn.close()
     return render_template("addlisting.html", manufacturers=manufacturers, qualities=qualities)
 
-# ── UPDATE ─────────────────────────────────────────────────────────────────────
 @app.route("/<quality_name>/<int:sludinajums_id>/labot", methods=["GET", "POST"])
 def labot(quality_name, sludinajums_id):
     conn = get_db_connection()
@@ -132,7 +127,6 @@ def labot(quality_name, sludinajums_id):
             cur = conn.execute("INSERT INTO manufacturers (name) VALUES (?)", (other_name,))
             manufacturer_id = cur.lastrowid
 
-        # Image — only update if a new file was uploaded
         image_name = sludinajums["image"]
         file = request.files.get("image")
         if file and file.filename and allowed_file(file.filename):
@@ -155,7 +149,6 @@ def labot(quality_name, sludinajums_id):
     conn.close()
     return render_template("editlisting.html", sludinajums=sludinajums, manufacturers=manufacturers, qualities=qualities)
 
-# ── DELETE ─────────────────────────────────────────────────────────────────────
 @app.route("/<quality_name>/<int:sludinajums_id>/dzest", methods=["POST"])
 def dzest(quality_name, sludinajums_id):
     conn = get_db_connection()

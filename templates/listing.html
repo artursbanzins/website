@@ -2,7 +2,6 @@
 {% block title %}{{ sludinajums['manufacturer_name'] }} {{ sludinajums['model'] }}{% endblock %}
 {% block content %}
 
-    <!-- HERO IMAGE -->
     <div class="listing-hero">
         <img src="{{ url_for('static', filename='images/' + sludinajums['image'] + '.jpg') }}"
              alt="{{ sludinajums['manufacturer_name'] }} {{ sludinajums['model'] }}"
@@ -20,10 +19,8 @@
         </div>
     </div>
 
-    <!-- MAIN CONTENT -->
     <div class="listing-layout">
 
-        <!-- LEFT: DETAILS -->
         <div class="detail-card">
             <h2 class="section-title">Informācija</h2>
             <div class="detail-grid">
@@ -61,7 +58,6 @@
             </div>
         </div>
 
-        <!-- RIGHT: PRICE CARD -->
         <div class="listing-sidebar">
             <div class="price-card">
                 <p class="price-label">Cena</p>
@@ -70,7 +66,6 @@
                     Sazināties
                 </button>
 
-                <!-- MODAL -->
                 <div id="contact-modal" style="display:none;" class="modal-overlay" onclick="if(event.target===this)this.style.display='none'">
                     <div class="modal-card">
                         <h2>Sazinies ar pārdevēju</h2>
